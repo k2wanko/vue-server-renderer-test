@@ -10,5 +10,8 @@ function createApp() {
 if (typeof window !== 'undefined') {
   createApp().$mount('#app')
 } else if (typeof module !== 'undefined' && module.exports) {
-  module.exports = createApp
+  const app = createApp()
+  module.exports = context => {
+    return Promise.resolve(app)
+  }
 }

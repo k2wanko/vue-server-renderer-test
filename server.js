@@ -12,8 +12,8 @@ app.use('/dist', express.static(
 ))
 
 const layout = fs.readFileSync('index.html', 'utf-8')
-const createApp = require('./dist/server-bundle.js')
-const renderer = require('vue-server-renderer').createRenderer()
+const createBundleRenderer = require('vue-server-renderer').createBundleRenderer
+const renderer = createBundleRenderer(fs.readFileSync('./dist/server-bundle.js', 'utf-8'))
 
 const html = (() => {
   const target = '<div id="app"></div>'
@@ -25,8 +25,8 @@ const html = (() => {
 })()
 
 app.get('*', (req, res) => {
-  const vm = createApp()
-  const stream = renderer.renderToStream(vm)
+  const context = {}
+  const stream = renderer.renderToStream(context)
 
   res.write(html.head)
   stream.on('data', chunk => {
