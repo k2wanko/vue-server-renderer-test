@@ -1,7 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-new Vue({
-  el: '#app',
-  render: h => h(App)
-})
+function createApp() {
+  return new Vue({
+    render: h => h(App)
+  })
+}
+
+if (typeof window !== 'undefined') {
+  createApp().$mount('#app')
+} else if (typeof module !== 'undefined' && module.exports) {
+  module.exports = createApp
+}

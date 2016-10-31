@@ -9,7 +9,7 @@ export default {
       counter: 0
     }
   },
-  created () {
+  mounted () {
     setInterval(() => { this.counter += 1 }, 1000)
   }
 }

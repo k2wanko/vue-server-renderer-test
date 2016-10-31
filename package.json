@@ -5,10 +5,14 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "serve": "cross-env NODE_ENV=development webpack --progress --hide-modules && node server.js",
+    "start": "cross-env NODE_ENV=production node server.js"
   },
   "dependencies": {
-    "vue": "^2.0.1"
+    "express": "^4.14.0",
+    "vue": "^2.0.1",
+    "vue-server-renderer": "^2.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",

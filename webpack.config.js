@@ -1,7 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 
-module.exports = {
+const client = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -44,9 +44,9 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  client.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
-  module.exports.plugins = (module.exports.plugins || []).concat([
+  client.plugins = (client.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
@@ -62,3 +62,15 @@ if (process.env.NODE_ENV === 'production') {
     })
   ])
 }
+
+var server = Object.assign({}, client, {
+  target: 'node',
+  devtool: false,
+  output: Object.assign({}, client.output, {
+    filename: 'server-bundle.js',
+    libraryTarget: 'commonjs2'
+  }),
+  externals: Object.keys(require('./package.json').dependencies),
+})
+
+module.exports = [client, server]

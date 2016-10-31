@@ -1260,7 +1260,7 @@ expand-range@^1.8.1:
   dependencies:
     fill-range "^2.1.0"
 
-express@^4.13.3:
+express, express@^4.13.3:
   version "4.14.0"
   resolved "https://registry.yarnpkg.com/express/-/express-4.14.0.tgz#c1ee3f42cdc891fb3dc650a8922d51ec847d0d66"
   dependencies:
@@ -3293,6 +3293,13 @@ vue-loader@^9.7.0:
     vue-style-loader "^1.0.0"
     vue-template-compiler "^2.0.0-rc.3"
     vue-template-es2015-compiler "^1.0.0"
+
+vue-server-renderer:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/vue-server-renderer/-/vue-server-renderer-2.0.3.tgz#8a94a6707b517970336aacbb982023720fb7f53c"
+  dependencies:
+    de-indent "^1.0.2"
+    he "^1.1.0"
 
 vue-style-loader@^1.0.0:
   version "1.0.0"
